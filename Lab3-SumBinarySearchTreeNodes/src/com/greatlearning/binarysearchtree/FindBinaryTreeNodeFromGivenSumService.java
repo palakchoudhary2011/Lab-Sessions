@@ -22,43 +22,35 @@ public class FindBinaryTreeNodeFromGivenSumService {
 		if( root == null) {
 			return false;
 		}
+		ArrayList<Integer> list = new ArrayList<>();
 		
-		ArrayList<Integer> list1 = new ArrayList<>();
+		list = Inorder(root, list);
 		
-		ArrayList<Integer> list2 = new ArrayList<>();
+		int startIndex = 0;
+		int lastIndex = list.size() - 1;
 		
-		list2 = Inorder(root, list1);
-		
-		int start = 0;
-		int end = list2.size() - 1;
-		
-		while(start < end) {
-			if( list2.get(start) + list2.get(end) == sum) {
-				System.out.println("Pair is (" + list2.get(start) + "," + list2.get(end) + ")");
+		while(startIndex < lastIndex) {
+			if( list.get(startIndex) + list.get(lastIndex) == sum) {
+				System.out.println("Sum :" + sum);
+				System.out.println("Pair is (" + list.get(startIndex) + "," + list.get(lastIndex) + ")");
 				return true;
 			}
-			 if (list2.get(start) + list2.get(end) > sum) // decrements end
-	            {
-	                end--;
+			 if (list.get(startIndex) + list.get(lastIndex) > sum){
+	                lastIndex--;
 	            }
 	 
-	            if (list2.get(start) + list2.get(end) < sum) // increments start
-	            {
-	                start++;
+	            if (list.get(startIndex) + list.get(lastIndex) < sum){
+	                startIndex++;
 	            }
 		}
-		
 		 System.out.println("Nodes are not found.");
 	        return false;
-		
 	}
 	
 	ArrayList<Integer> Inorder(Node root, ArrayList<Integer> list){
-		
 		if( root == null) {
 			return list; 
 		}
-		
 		Inorder(root.left, list);
 		list.add(root.key);
 		Inorder(root.right, list);
@@ -66,6 +58,22 @@ public class FindBinaryTreeNodeFromGivenSumService {
 		return list;
 	}
 
+	static Node insert(Node root, int key) {
+		
+		if( root == null) {
+			root = new Node(key);
+			return root;
+		}
+		
+		if( key < root.key) {
+			root.left = insert( root.left, key);
+		} else if( key > root.key) {
+			root.right = insert(root.right, key);
+		}
+		
+		return root;
+			
+	}
+		
 	
-
 }

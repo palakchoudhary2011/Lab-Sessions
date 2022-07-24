@@ -17,23 +17,23 @@ public class BalanceBracketsService {
 				return false;
 			}
 			
-			char check;
+			char checkBrackets;
             switch (bracket) {
             case ')':
-                check = (char) stack.pop();
-                if (check == '{' || check == '[')
+            	checkBrackets = (char) stack.pop();
+                if (checkBrackets == '{' || checkBrackets == '[')
                     return false;
                 break;
  
             case '}':
-                check = (char) stack.pop();
-                if (check == '(' || check == '[')
+            	checkBrackets = (char) stack.pop();
+                if (checkBrackets == '(' || checkBrackets == '[')
                     return false;
                 break;
  
             case ']':
-                check = (char) stack.pop();
-                if (check == '(' || check == '{')
+            	checkBrackets = (char) stack.pop();
+                if (checkBrackets == '(' || checkBrackets == '{')
                     return false;
                 break;
             }

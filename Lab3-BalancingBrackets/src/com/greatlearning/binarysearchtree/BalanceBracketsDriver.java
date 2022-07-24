@@ -6,7 +6,7 @@ public class BalanceBracketsDriver {
 	public static void main(String args[]) {
 		
 		BalanceBracketsService bracket = new BalanceBracketsService();
-		String str = "([[{}]])";
+		String str = "([[{}]]))";
         if (bracket.BalanceBracket(str))
             System.out.println("The entered String has Balanced Brackets");
         else
